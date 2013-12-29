@@ -13,17 +13,16 @@ if(count($cards)){
 		$num = str_replace("x", "", $tmp[0]);
 		$cardTitle = trim(str_replace($tmp[0], "", $card));
 		//Search
-		echo colorize("\nFinding: ".$cardTitle, "notice");
+		echo colorize("Finding: ".$cardTitle, "notice");
 		$results = searchCard($cardTitle);
 		if(count($results)){
 			foreach($results as $result){
-				if($result['lang']=="Español"){
-					echo colorize("Price: ".$result['price']);
-					echo colorize("Set: ".$result['set']);
-					echo colorize("Status: ".$result['status']);
-					$price += $num*$result['price'];
-					break;
-				}
+				echo colorize("Price: ".$result['price']);
+				echo colorize("Set: ".$result['set']);
+				echo colorize("Status: ".$result['status']);
+				echo colorize("Language: ".$result['lang']);
+				$price += $num*$result['price'];
+				break;
 			}
 		}else{
 			echo colorize("Card not found", "error");
@@ -35,6 +34,7 @@ if(count($cards)){
 }
 
 function searchCard($cardTitle){
+	$results = array();
 	$post = array(
 		"game"=>"magic",
 		"nombrecarta"=>$cardTitle,
