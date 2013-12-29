@@ -28,7 +28,7 @@ if(count($cards)){
 			echo colorize("Card not found", "error");
 		}
 	}
-	echo colorize("\nTotal price: ".$price, "success");
+	echo colorize("Total price: ".$price, "success");
 }else{
 	die(colorize("No cards found", "error"));
 }
